@@ -48,24 +48,24 @@ async function tmp(){
 
     // Extract answers and true/false
     i = 0;
+    let c=0
     while (i < arr.length) {
         let line = arr[i];
         if (line.includes('√') || line.includes('•')) {
             true_false.push(line.includes('√'));
             let answer = line;
             i++;
-            while (i < arr.length && !arr[i].match(/^\d+\./) && !arr[i].includes('√') && !arr[i].includes('•')) {
+            while (i < arr.length && (!questions.includes(arr[i])) && !arr[i].includes('√') && !arr[i].includes('•')) {
                 answer += ' ' + arr[i];
                 i++;
-            }if(line.includes('•')){
-                answers.push(line.slice(line.indexOf('•')+1));
-            }if(line.includes('√')){
-                answers.push(line.slice(line.indexOf('√')+1));
+                
             }
-      
-            // answers.push(answer);
+            answers.push(answer.slice(2));
+            
+            
         } else {
             i++;
+            
         }
     }
 
